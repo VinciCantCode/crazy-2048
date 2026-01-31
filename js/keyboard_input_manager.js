@@ -22,6 +22,11 @@ KeyboardInputManager.prototype.on = function (event, callback) {
   this.events[event].push(callback);
 };
 
+KeyboardInputManager.prototype.saveScore = function (event) {
+  event.preventDefault();
+  this.emit("saveScore");
+};
+
 KeyboardInputManager.prototype.emit = function (event, data) {
   var callbacks = this.events[event];
   if (callbacks) {
@@ -52,6 +57,11 @@ KeyboardInputManager.prototype.listen = function () {
       return;
     }
 
+    // Prevent game movement when modal is open
+    if (document.body.classList.contains('modal-open')) {
+      return;
+    }
+
     var direction = keyMap[event.key];
     if (direction === undefined) {
       direction = directionMap[event.which];
@@ -65,7 +75,7 @@ KeyboardInputManager.prototype.listen = function () {
       return;
     }
 
-    if (event.key === "r" || event.key === "R" || event.which === 82 || event.keyCode === 82) {
+    if (!document.body.classList.contains('modal-open') && (event.key === "r" || event.key === "R" || event.which === 82 || event.keyCode === 82)) {
       event.preventDefault();
       self.restart.call(self, event);
     }
@@ -76,6 +86,7 @@ KeyboardInputManager.prototype.listen = function () {
   this.bindButtonPress(".retry-button", this.restart);
   this.bindButtonPress(".restart-button", this.restart);
   this.bindButtonPress(".keep-playing-button", this.keepPlaying);
+  this.bindButtonPress(".save-button", this.saveScore);
 
   var touchStartClientX, touchStartClientY;
   var gameContainer = document.getElementsByClassName("game-container")[0];

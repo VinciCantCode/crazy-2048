@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "An extended 2048 game with 8x8 board and special tiles (NaN, Undefined)",
   "scripts": {
+    "start": "node server.js",
     "build:css": "sass style/main.scss style/main.css",
     "watch:css": "sass --watch style/main.scss style/main.css"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "sass": "^1.77.0"

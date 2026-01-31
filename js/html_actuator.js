@@ -59,6 +59,8 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   if (tile.value === Tile.NaN) classes.push("tile-nan");
   else if (tile.value === Tile.Undefined) classes.push("tile-undefined");
+  else if (tile.value === Tile.Infinity) classes.push("tile-infinity");
+  else if (tile.value === Tile.Global) classes.push("tile-global");
   else if (tile.value > 2048) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
@@ -68,6 +70,10 @@ HTMLActuator.prototype.addTile = function (tile) {
     inner.textContent = "NaN";
   } else if (tile.value === Tile.Undefined) {
     inner.textContent = "undef";
+  } else if (tile.value === Tile.Infinity) {
+    inner.textContent = "∞";
+  } else if (tile.value === Tile.Global) {
+    inner.textContent = "★";
   } else {
     inner.textContent = tile.value;
   }

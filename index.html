@@ -28,7 +28,10 @@
 
     <div class="above-game">
       <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
-      <a class="restart-button">New Game</a>
+      <div class="button-group">
+        <a class="restart-button">New Game</a>
+        <a class="save-button">Save Score</a>
+      </div>
     </div>
 
     <div class="game-container">
@@ -129,21 +132,70 @@
     </div>
 
     <div class="probability-controls">
-      <div class="nan-probability-control">
-        <label><span class="tile-label tile-label-nan">NaN</span>: <span id="nan-probability-value">0</span>%</label>
-        <input type="range" id="nan-probability-slider" min="0" max="50" value="0" step="5" tabindex="-1">
-        <span class="nan-hint">(Obstacle, cannot merge)</span>
+      <div class="controls-row">
+        <div class="nan-probability-control">
+          <label><span class="tile-label tile-label-nan">NaN</span>: <span id="nan-probability-value">0</span>%</label>
+          <input type="range" id="nan-probability-slider" min="0" max="10" value="0" step="1" tabindex="-1">
+          <span class="nan-hint">(Obstacle)</span>
+        </div>
+        <div class="undefined-probability-control">
+          <label><span class="tile-label tile-label-undefined">undef</span>: <span id="undefined-probability-value">0</span>%</label>
+          <input type="range" id="undefined-probability-slider" min="0" max="10" value="0" step="1" tabindex="-1">
+          <span class="undefined-hint">(Clear NaN)</span>
+        </div>
       </div>
-      <div class="undefined-probability-control">
-        <label><span class="tile-label tile-label-undefined">undef</span>: <span id="undefined-probability-value">0</span>%</label>
-        <input type="range" id="undefined-probability-slider" min="0" max="50" value="0" step="5" tabindex="-1">
-        <span class="undefined-hint">(Merge two to clear NaN!)</span>
+      <div class="controls-row">
+        <div class="infinity-probability-control">
+          <label><span class="tile-label tile-label-infinity">∞</span>: <span id="infinity-probability-value">0</span>%</label>
+          <input type="range" id="infinity-probability-slider" min="0" max="10" value="0" step="1" tabindex="-1">
+          <span class="infinity-hint">(Explode)</span>
+        </div>
+        <div class="global-probability-control">
+          <label><span class="tile-label tile-label-global">★</span>: <span id="global-probability-value">0</span>%</label>
+          <input type="range" id="global-probability-slider" min="0" max="10" value="0" step="1" tabindex="-1">
+          <span class="global-hint">(Double)</span>
+        </div>
       </div>
     </div>
 
     <p class="game-explanation">
       <strong class="important">How to play:</strong> Use <strong>arrow keys</strong> or <strong>WASD</strong> to move. When two tiles with the same number touch, they <strong>merge into one!</strong>
     </p>
+
+    <div class="comments-section">
+      <div class="comments-header">
+        <h2>Comments</h2>
+        <button id="toggle-comments" class="toggle-btn">Hide Comments</button>
+      </div>
+      <form id="comment-form">
+        <input type="text" id="nickname" placeholder="Your nickname" required>
+        <textarea id="message" placeholder="Leave a comment..." required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <div id="comments-list">
+        <!-- Comments will be loaded here -->
+      </div>
+    </div>
+
+    <div class="leaderboard-section">
+      <h2>Leaderboard</h2>
+      <div id="leaderboard-list">
+        <!-- Leaderboard will be loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Save Score Modal -->
+  <div id="save-score-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3 id="modal-title">Save Your Score</h3>
+      <p id="modal-message">Enter your nickname to save your score:</p>
+      <input type="text" id="nickname-input" maxlength="20" placeholder="Your nickname">
+      <div class="modal-buttons">
+        <button id="modal-cancel" class="modal-btn modal-btn-secondary">Cancel</button>
+        <button id="modal-save" class="modal-btn modal-btn-primary">Save</button>
+      </div>
+    </div>
   </div>
 
   <script src="js/bind_polyfill.js"></script>
@@ -156,5 +208,8 @@
   <script src="js/local_storage_manager.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
+  <script src="js/comments.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/modal.js"></script>
 </body>
 </html>

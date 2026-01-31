@@ -1,6 +1,8 @@
 function initGame() {
   window.nanProbability = 0;
   window.undefinedProbability = 0;
+  window.infinityProbability = 0;
+  window.globalProbability = 0;
 
   // Helper function to setup slider with game key prevention
   function setupSlider(sliderId, valueDisplayId, probabilityKey) {
@@ -38,6 +40,8 @@ function initGame() {
 
   setupSlider("nan-probability-slider", "nan-probability-value", "nanProbability");
   setupSlider("undefined-probability-slider", "undefined-probability-value", "undefinedProbability");
+  setupSlider("infinity-probability-slider", "infinity-probability-value", "infinityProbability");
+  setupSlider("global-probability-slider", "global-probability-value", "globalProbability");
 
   new GameManager(8, KeyboardInputManager, HTMLActuator, LocalStorageManager);
 }

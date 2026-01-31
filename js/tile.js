@@ -1,5 +1,7 @@
 Tile.NaN = "NaN";
 Tile.Undefined = "Undefined";
+Tile.Infinity = "Infinity";
+Tile.Global = "Global";
 
 function Tile(position, value) {
   this.x                = position.x;
@@ -16,6 +18,14 @@ Tile.prototype.isNaN = function () {
 
 Tile.prototype.isUndefined = function () {
   return this.value === Tile.Undefined;
+};
+
+Tile.prototype.isInfinity = function () {
+  return this.value === Tile.Infinity;
+};
+
+Tile.prototype.isGlobal = function () {
+  return this.value === Tile.Global;
 };
 
 Tile.prototype.savePosition = function () {
